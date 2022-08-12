@@ -9,6 +9,10 @@ title: Day 05 - Object : Spherical
 import React, { useCallback, useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
+import { Text } from "@react-three/drei";
+import { Box, Flex } from "@react-three/flex";
+import fontUrl from "static/font/s.otf";
+
 import {
   LinearToneMapping,
   NoToneMapping,
@@ -16,8 +20,7 @@ import {
   ReinhardToneMapping,
   CineonToneMapping,
 } from "three";
-import { useControls } from "leva";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 const TONEMAPPING_DIC = {
   NoToneMapping,
   LinearToneMapping,
@@ -25,26 +28,29 @@ const TONEMAPPING_DIC = {
   ReinhardToneMapping,
   CineonToneMapping,
 };
+
+const MOVE_DURATION = 0.8;
 export default function Model({ ...props }) {
-  const group = useRef();
   const sceneGroup = useRef();
+  const { viewport } = useThree();
+  const { width, height } = viewport;
   const { nodes, materials } = useGLTF("/scene.gltf");
   const { gl } = useThree();
-  const { toneMappingValue } = useControls({
-    tone: {
-      options: [
-        "NoToneMapping",
-        "LinearToneMapping",
-        "ACESFilmicToneMapping",
-        "ReinhardToneMapping",
-        "CineonToneMapping",
-      ],
-      onChange: (e) => {
-        const val = TONEMAPPING_DIC[e];
-        gl.toneMapping = val;
-      },
-    },
-  });
+  // const { toneMappingValue } = useControls({
+  //   tone: {
+  //     options: [
+  //       "NoToneMapping",
+  //       "LinearToneMapping",
+  //       "ACESFilmicToneMapping",
+  //       "ReinhardToneMapping",
+  //       "CineonToneMapping",
+  //     ],
+  //     onChange: (e) => {
+  //       const val = TONEMAPPING_DIC[e];
+  //       gl.toneMapping = val;
+  //     },
+  //   },
+  // });
 
   const resizeHandler = useCallback(() => {
     gl.toneMapping = NoToneMapping;
@@ -62,18 +68,18 @@ export default function Model({ ...props }) {
     const normalizedX = (clientX / window.innerWidth) * 2 - 1;
     const normalizedY = (-clientY / window.innerHeight) * 2 + 1;
     gsap.to(sceneGroup.current.scale, {
-      x: 1 - 0.1 * normalizedY,
-      y: 1 - 0.1 * normalizedY,
-      duration: 1.5,
+      x: 1 - 0.03 * normalizedY,
+      y: 1 - 0.03 * normalizedY,
+      duration: MOVE_DURATION,
     });
     gsap.to(sceneGroup.current.position, {
-      x: normalizedX,
-      duration: 1.5,
+      x: normalizedX * 0.2,
+      duration: MOVE_DURATION,
     });
     gsap.to(sceneGroup.current.rotation, {
-      x: -normalizedY * (Math.PI / 3) * 0.1,
+      x: -normalizedY * (Math.PI / 3) * 0.02,
       y: normalizedX * (Math.PI / 3) * 0.1,
-      duration: 1.5,
+      duration: MOVE_DURATION,
     });
   }, []);
 
@@ -83,7 +89,7 @@ export default function Model({ ...props }) {
       window.removeEventListener("mousemove", mouseMoveHandler);
     };
   }, [mouseMoveHandler]);
-
+  const fontSize = (width * 0.67) / 3;
   return (
     <>
       <group ref={sceneGroup} {...props} dispose={null}>
@@ -166,11 +172,42 @@ export default function Model({ ...props }) {
           <planeBufferGeometry args={[50, 50]} />
           <meshBasicMaterial color={"#702b5e"} />
         </mesh>
-        <mesh position={[0, 0, -3.5]}>
+        <mesh position={[0, 0, -4]}>
           <planeBufferGeometry args={[50, 50]} />
           <meshBasicMaterial color={"#662454"} />
         </mesh>
       </group>
+
+      <Flex
+        flexDirection="column"
+        position-z={-3}
+        position-y={5}
+        position-x={0}
+      >
+        <Box width="auto">
+          <Text font={fontUrl} fontSize={fontSize}>
+            ELEPHANT
+          </Text>
+        </Box>
+        <Flex
+          position-y={-width * 0.2}
+          position-x={-width * 0.4}
+          justifyContent="space-between"
+          flexDirection="row"
+          width={width * 0.67}
+        >
+          <Box width="auto">
+            <Text font={fontUrl} fontSize={fontSize}>
+              LI'L
+            </Text>
+          </Box>
+          <Box width="auto">
+            <Text font={fontUrl} fontSize={fontSize}>
+              BABY
+            </Text>
+          </Box>
+        </Flex>
+      </Flex>
     </>
   );
 }

@@ -20,8 +20,6 @@ export default function Elephant() {
         scale={0.9}
       >
         <mesh
-          receiveShadow
-          castShadow
           geometry={nodes.highlights_0.geometry}
           material={materials.highlights}
         />
@@ -32,8 +30,6 @@ export default function Elephant() {
         scale={0.9}
       >
         <mesh
-          receiveShadow
-          castShadow
           geometry={nodes.eyes_0.geometry}
           material={materials["yeux.001"]}
         />
@@ -43,12 +39,7 @@ export default function Elephant() {
         rotation={[0.54, -0.03, 0.38]}
         scale={0.9}
       >
-        <mesh
-          receiveShadow
-          castShadow
-          geometry={nodes.eyesnoir_0.geometry}
-          material={materials.noir}
-        />
+        <mesh geometry={nodes.eyesnoir_0.geometry} material={materials.noir} />
       </group>
       <group
         position={[0.34, 0, 0.41]}
@@ -56,8 +47,6 @@ export default function Elephant() {
         scale={0.9}
       >
         <mesh
-          receiveShadow
-          castShadow
           geometry={nodes.eyescouleur_0.geometry}
           material={materials["yeux.couleur"]}
         />
@@ -68,24 +57,17 @@ export default function Elephant() {
         scale={0.9}
       >
         <mesh
-          receiveShadow
-          castShadow
           geometry={nodes.defenses_0.geometry}
           material={materials.defenses}
         />
       </group>
-      <mesh geometry={nodes.cyclo_0.geometry} material={materials.cyclo} />
+      <mesh geometry={nodes.cyclo_0.geometry} material={materials.cyclo}></mesh>
       <group
         position={[0.34, 0, 0.41]}
         rotation={[0.54, -0.03, 0.38]}
         scale={0.9}
       >
-        <mesh
-          receiveShadow
-          castShadow
-          geometry={nodes.body_0.geometry}
-          material={materials.peau}
-        />
+        <mesh geometry={nodes.body_0.geometry} material={materials.peau} />
       </group>
     </group>
   );

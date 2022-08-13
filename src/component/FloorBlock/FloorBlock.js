@@ -1,13 +1,13 @@
-const FloorBlock = () => {
+const FloorBlock = ({ backgroundColor, floorColor }) => {
   return (
     <>
       <mesh position={[0, -0.001, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeBufferGeometry args={[50, 50]} />
-        <meshBasicMaterial color={"#702b5e"} />
+        <meshBasicMaterial color={floorColor} />
       </mesh>
-      <mesh position={[0, 0, -4]}>
+      <mesh position={[0, 0, -6]}>
         <planeBufferGeometry args={[50, 50]} />
-        <meshBasicMaterial color={"#662454"} />
+        <meshBasicMaterial color={backgroundColor} />
       </mesh>
     </>
   );

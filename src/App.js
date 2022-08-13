@@ -2,10 +2,9 @@ import { Canvas } from "@react-three/fiber";
 import "./App.scss";
 import { Suspense } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
-import Giraffe from "./component/Giraffe/Giraffe";
 import { NoToneMapping } from "three";
 import Home from "component/Home/Home";
-import Elephant from "./component/Elephant/Elephant";
+import Scene from "component/Scene/Scene";
 
 const App = () => {
   return (
@@ -24,8 +23,7 @@ const App = () => {
             far={100}
             fov={60}
           />
-          {/* <Giraffe /> */}
-          <Elephant />
+          <Scene />
         </Suspense>
       </Canvas>
     </>

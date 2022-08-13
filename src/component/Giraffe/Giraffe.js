@@ -6,23 +6,20 @@ source: https://sketchfab.com/models/c29e6775218b4ec9b345677660a17a24
 title: Day 20 - Minimalistic : Split
 */
 
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-export default function Giraffe({ ...props }) {
-  const group = useRef();
+export default function Giraffe() {
   const { nodes, materials } = useGLTF("/giraffe.glb");
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group position={[0.11, 0, 0]} rotation={[0, 0, 0.45]} scale={1.03}>
-          <mesh
-            geometry={nodes.girafe_0.geometry}
-            material={materials.simple_wood}
-          />
-        </group>
-        <mesh geometry={nodes.cyclo_0.geometry} material={materials.cyclo} />
+    <group rotation={[-Math.PI / 2, 0, 0]}>
+      <group position={[0.11, 0, 0]} rotation={[0, 0, 0.45]} scale={1.03}>
+        <mesh
+          geometry={nodes.girafe_0.geometry}
+          material={materials.simple_wood}
+        />
       </group>
+      <mesh geometry={nodes.cyclo_0.geometry} material={materials.cyclo} />
     </group>
   );
 }

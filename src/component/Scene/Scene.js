@@ -89,7 +89,8 @@ export default function Model({ ...props }) {
       window.removeEventListener("mousemove", mouseMoveHandler);
     };
   }, [mouseMoveHandler]);
-  const fontSize = (width * 0.67) / 3;
+
+  const fontSize = width / 8;
   return (
     <>
       <group ref={sceneGroup} {...props} dispose={null}>
@@ -179,34 +180,22 @@ export default function Model({ ...props }) {
       </group>
 
       <Flex
-        flexDirection="column"
-        position-z={-3}
-        position-y={5}
-        position-x={0}
+        position-y={2.5}
+        position-x={-width * 0.29}
+        justifyContent="space-between"
+        flexDirection="row"
+        width={width / 1.8}
       >
         <Box width="auto">
           <Text font={fontUrl} fontSize={fontSize}>
-            ELEPHANT
+            LI'L
           </Text>
         </Box>
-        <Flex
-          position-y={-width * 0.2}
-          position-x={-width * 0.4}
-          justifyContent="space-between"
-          flexDirection="row"
-          width={width * 0.67}
-        >
-          <Box width="auto">
-            <Text font={fontUrl} fontSize={fontSize}>
-              LI'L
-            </Text>
-          </Box>
-          <Box width="auto">
-            <Text font={fontUrl} fontSize={fontSize}>
-              BABY
-            </Text>
-          </Box>
-        </Flex>
+        <Box width="auto">
+          <Text font={fontUrl} fontSize={fontSize}>
+            BABY
+          </Text>
+        </Box>
       </Flex>
     </>
   );

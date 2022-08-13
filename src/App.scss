@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "s-font";
+  src: url("static/font/s.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "c-font";
+  src: url("static/font/c.woff2") format("woff2");
+}
+
+.s-font {
+  font-family: "s-font";
+}
+
+.c-font {
+  font-family: "c-font";
+}
+
 html,
 body {
   overflow: hidden;

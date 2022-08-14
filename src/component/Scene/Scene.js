@@ -16,22 +16,6 @@ const Scene = () => {
   }, [gl]);
   const sceneGroup = useRef();
 
-  const data = [
-    {
-      component: <Elephant />,
-      name: "ELEPHANT",
-      backgroundColor: "#702b5e",
-      floorColor: "#662454",
-      index: 0,
-    },
-    {
-      component: <Giraffe />,
-      name: "GIRAFFE",
-      backgroundColor: "#86573c",
-      floorColor: "#a76d44",
-      index: 1,
-    },
-  ];
   const mouseMoveHandler = useCallback((event) => {
     const { clientX, clientY } = event;
     const normalizedX = (clientX / window.innerWidth) * 2 - 1;

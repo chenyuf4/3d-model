@@ -14,4 +14,7 @@ export const useStore = create((set) => ({
   mode: "elephant",
   setMode: (mode) => set({ mode }),
   canvasSizeRef: React.createRef(),
+  elephantTitleRef: React.createRef(),
+  giraffeTitleRef: React.createRef(),
+  alienTitleRef: React.createRef(),
 }));

@@ -13,7 +13,7 @@ const AlienTitle = () => {
     <Flex
       ref={(node) => (alienTitleRef.current = node)}
       position-y={3}
-      position-x={-width * 0.3}
+      position-x={-width * 0.29}
       justifyContent="space-between"
       flexDirection="row"
       width={width / 1.5}

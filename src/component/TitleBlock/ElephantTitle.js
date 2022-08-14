@@ -14,7 +14,7 @@ const ElephantTitle = () => {
     <Flex
       ref={(node) => (elephantTitleRef.current = node)}
       position-y={3}
-      position-x={-width * 0.35}
+      position-x={-width * 0.32}
       justifyContent="space-between"
       flexDirection="row"
       width={width / 1.3}

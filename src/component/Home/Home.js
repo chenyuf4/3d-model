@@ -6,6 +6,8 @@ import { useRef, useState } from "react";
 import { Power2 } from "gsap";
 import { data } from "utils/constants";
 import ArrowIcon from "./ArrowIcon";
+import sound from "static/music/sound.mp3";
+const audio = new Audio(sound);
 const Home = () => {
   const [elephantGroupRef, elephantBodyRef] = useStore((state) => [
     state.elephantGroupRef,
@@ -19,7 +21,7 @@ const Home = () => {
     state.alienGroupRef,
     state.alienBodyRef,
   ]);
-
+  const [musicPlaying, setMusicPlaying] = useState(false);
   const [elephantTitleRef, giraffeTitleRef, alienTitleRef] = useStore(
     (state) => [
       state.elephantTitleRef,
@@ -30,6 +32,7 @@ const Home = () => {
   const [mode, setMode] = useStore((state) => [state.mode, state.setMode]);
   const canvasSizeRef = useStore((state) => state.canvasSizeRef);
   const [animating, setAnimating] = useState(false);
+
   const tl = useRef(
     gsap.timeline({
       onComplete: () => {
@@ -288,16 +291,35 @@ const Home = () => {
     <div className={clsx(styles["home-container"], "p-5")}>
       <div className="d-flex justify-content-between align-items-center">
         <div className="s-font text-white h3 mb-0">STEPHEN</div>
-        <div className="overflow-hidden">
+        <div className="d-flex align-items-center">
           <div
-            className={clsx(
-              styles["icon-container"],
-              !animating && "cursor-pointer",
-              "overflow-hidden"
-            )}
+            className="cursor-pointer"
+            onClick={() => {
+              if (musicPlaying) {
+                audio.pause();
+              } else {
+                audio.play();
+              }
+              setMusicPlaying(!musicPlaying);
+            }}
           >
-            <div className="arrow-container" onClick={onClickHandler}>
-              <ArrowIcon />
+            {musicPlaying ? (
+              <i className="bi bi-volume-up-fill text-white h3 mb-0"></i>
+            ) : (
+              <i className="bi bi-volume-mute-fill text-white h3 mb-0"></i>
+            )}
+          </div>
+          <div className="overflow-hidden ms-5">
+            <div
+              className={clsx(
+                styles["icon-container"],
+                !animating && "cursor-pointer",
+                "overflow-hidden"
+              )}
+            >
+              <div className="arrow-container" onClick={onClickHandler}>
+                <ArrowIcon />
+              </div>
             </div>
           </div>
         </div>

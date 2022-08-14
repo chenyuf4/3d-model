@@ -6,6 +6,7 @@ import { NoToneMapping } from "three";
 import gsap from "gsap";
 import Elephant from "component/Elephant/Elephant";
 import Giraffe from "component/Giraffe/Giraffe";
+import Alien from "component/Alien/Alien";
 const MOVE_DURATION = 0.8;
 
 const Scene = () => {
@@ -68,11 +69,9 @@ const Scene = () => {
   return (
     <>
       <group ref={sceneGroup} dispose={null}>
-        {data[1].component}
-        <FloorBlock
-          backgroundColor={data[1].backgroundColor}
-          floorColor={data[1].floorColor}
-        />
+        <Elephant />
+        <Giraffe />
+        <Alien />
       </group>
       <TitleBlock />
     </>

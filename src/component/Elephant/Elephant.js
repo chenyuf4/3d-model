@@ -8,67 +8,87 @@ title: Day 05 - Object : Spherical
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
-
+import { useStore } from "store/store";
+import FloorBlock from "component/FloorBlock/FloorBlock";
+import { data } from "utils/constants";
 export default function Elephant() {
   const { nodes, materials } = useGLTF("/elephant.glb");
+  const elephantGroupRef = useStore((state) => state.elephantGroupRef);
+  const elephantBodyRef = useStore((state) => state.elephantBodyRef);
 
   return (
-    <group rotation={[-Math.PI / 2, 0, 0]}>
+    <group ref={(node) => (elephantGroupRef.current = node)}>
       <group
-        position={[0.34, 0, 0.41]}
-        rotation={[0.54, -0.03, 0.38]}
-        scale={0.9}
+        ref={(node) => (elephantBodyRef.current = node)}
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, 0.005, 0]}
       >
+        <group
+          position={[0.34, 0, 0.41]}
+          rotation={[0.54, -0.03, 0.38]}
+          scale={0.9}
+        >
+          <mesh
+            geometry={nodes.highlights_0.geometry}
+            material={materials.highlights}
+          />
+        </group>
+        <group
+          position={[0.34, 0, 0.41]}
+          rotation={[0.54, -0.03, 0.38]}
+          scale={0.9}
+        >
+          <mesh
+            geometry={nodes.eyes_0.geometry}
+            material={materials["yeux.001"]}
+          />
+        </group>
+        <group
+          position={[0.34, 0, 0.41]}
+          rotation={[0.54, -0.03, 0.38]}
+          scale={0.9}
+        >
+          <mesh
+            geometry={nodes.eyesnoir_0.geometry}
+            material={materials.noir}
+          />
+        </group>
+        <group
+          position={[0.34, 0, 0.41]}
+          rotation={[0.54, -0.03, 0.38]}
+          scale={0.9}
+        >
+          <mesh
+            geometry={nodes.eyescouleur_0.geometry}
+            material={materials["yeux.couleur"]}
+          />
+        </group>
+        <group
+          position={[0.34, 0, 0.41]}
+          rotation={[0.54, -0.03, 0.38]}
+          scale={0.9}
+        >
+          <mesh
+            geometry={nodes.defenses_0.geometry}
+            material={materials.defenses}
+          />
+        </group>
         <mesh
-          geometry={nodes.highlights_0.geometry}
-          material={materials.highlights}
-        />
+          geometry={nodes.cyclo_0.geometry}
+          material={materials.cyclo}
+        ></mesh>
+        <group
+          position={[0.34, 0, 0.41]}
+          rotation={[0.54, -0.03, 0.38]}
+          scale={0.9}
+        >
+          <mesh geometry={nodes.body_0.geometry} material={materials.peau} />
+        </group>
       </group>
-      <group
-        position={[0.34, 0, 0.41]}
-        rotation={[0.54, -0.03, 0.38]}
-        scale={0.9}
-      >
-        <mesh
-          geometry={nodes.eyes_0.geometry}
-          material={materials["yeux.001"]}
-        />
-      </group>
-      <group
-        position={[0.34, 0, 0.41]}
-        rotation={[0.54, -0.03, 0.38]}
-        scale={0.9}
-      >
-        <mesh geometry={nodes.eyesnoir_0.geometry} material={materials.noir} />
-      </group>
-      <group
-        position={[0.34, 0, 0.41]}
-        rotation={[0.54, -0.03, 0.38]}
-        scale={0.9}
-      >
-        <mesh
-          geometry={nodes.eyescouleur_0.geometry}
-          material={materials["yeux.couleur"]}
-        />
-      </group>
-      <group
-        position={[0.34, 0, 0.41]}
-        rotation={[0.54, -0.03, 0.38]}
-        scale={0.9}
-      >
-        <mesh
-          geometry={nodes.defenses_0.geometry}
-          material={materials.defenses}
-        />
-      </group>
-      <mesh geometry={nodes.cyclo_0.geometry} material={materials.cyclo}></mesh>
-      <group
-        position={[0.34, 0, 0.41]}
-        rotation={[0.54, -0.03, 0.38]}
-        scale={0.9}
-      >
-        <mesh geometry={nodes.body_0.geometry} material={materials.peau} />
-      </group>
+      <FloorBlock
+        floorColor={data.elephant.floorColor}
+        backgroundColor={data.elephant.backgroundColor}
+      />
     </group>
   );
 }

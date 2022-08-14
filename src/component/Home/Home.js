@@ -179,7 +179,7 @@ const Home = () => {
         {
           y: 0,
         },
-        "1.1"
+        "1.25"
       )
       .fromTo(
         //animated titles
@@ -193,7 +193,7 @@ const Home = () => {
           duration: 0.6,
           stagger: titleStagger,
         },
-        "1.2"
+        "1.3"
       )
       .fromTo(
         nextTitleMaterialArr,
@@ -204,7 +204,7 @@ const Home = () => {
           duration: 0.6,
           stagger: titleStagger,
         },
-        "1.2"
+        "1.3"
       )
       .to(
         refDic[currentMode].group.current.rotation,
